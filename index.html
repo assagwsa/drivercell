@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Search App</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Driver Search">
+    <meta name="application-name" content="Driver Search">
+    <meta name="theme-color" content="#6366F1">
+    <meta name="description" content="Driver contact directory and search application">
+    
+    <!-- PWA Manifest (Embedded) -->
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8;base64,ewogICJuYW1lIjogIkRyaXZlciBTZWFyY2ggQXBwIiwKICAic2hvcnRfbmFtZSI6ICJEcml2ZXJBcHAiLAogICJkZXNjcmlwdGlvbiI6ICJEcml2ZXIgY29udGFjdCBkaXJlY3RvcnkgYW5kIHNlYXJjaCBhcHBsaWNhdGlvbiIsCiAgInN0YXJ0X3VybCI6ICIuLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2ZmZmZmZiIsCiAgInRoZW1lX2NvbG9yIjogIiM2MzY2RjEiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1USTRJaUJvWldsbmFIUTlJakV5T0NJZ2RtbGxkMEp2ZUQwaU1DQXdJREV5T0NBek1qZ2lJR1pwYkd3OUltNXZibVVpSUhOMGNtOXJaVDBpWTNWeWNtVnVkRU52Ykc5eUlpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBpQThjR0YwYUNCa1BTSk5OVEV1TmpRZ01URXVOekEyUXpVd0xqYzBOeUF4TVM0M01EWWdOVGt1TURBMElERTFMamc0TnlBek9TNDJORFF3TFRJeUxqSTJOREF6TXk0NU5EUXpMUzR6TXpNek15NG5OakEwTGpNeE1qZzRMUzR6TXpNek15NDNOekkwTGpNME5qa3RMVGN1TmpOTVVERXhOaTQzTWpJMVRrZGhNakF1TXpVMU1sTXhNRGN1TnpJeU5TMVVNakF1TXpVMU1pSWdabWxzYkQwaVl6WXpOalprTVNJZ2MzUnliMnRsUFNJak1ERXhNMU5EVGtOUE1ERklValF1TlRkVFF6WTFMakkwTlRBME1UTXVOemc1VERFdVl6RTROU0kzTURaaGRITjZORE5tTWpVMFlURTBPVEEwY0hNeE5UUWdNVEEzTGpjek1TWXVZekF6WTI0dFl6SXpOaUV5TmpJdVl6azJNMlZsTkRZNE5qUW5hM05hTkEyT0pKZElpQnpkSEp2YTJVdGJHbHVaV2RoY0dsdVN6TWlJR1JoZEdGdVlXMWxQU0puZEdSUklpQjBkMnhMWkNBOUlqVWlMeUEzUXpjMkxqSTFUREV4TmlJeUl6U3paall1TWpRSUlERWllRFU5UXpjMkxqSTFOUzQzS1NJZ2MyVjBjbU5sYTJWK0lqWXhJaUJyWVc1ellnaU0vMkd6YUFPWWFWU0RjeU0yc1RTemlEQXFVM2dtc0NiVVkyR3ZnZUdaU1plS1duQ2cwN05hSGFCZWVBRFdpZ1VCdEFFQ01oaXNPM3ZGd2NjQSo0cWZRUENMYXRaMm9CQUdpcUQwTTJmN09PRGE3SEJCTjdBZ0hvT3RKWGNJOHNrZ0c5T1JzZjFOR3ZhVmJqL0hWSEEiLAogICAgICAic2l6ZXMiOiAiMTI4eDEyOCIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjNhV1IwYUQwaU1qVTJJaUJvWldsbmFIUTlJakkxTmlJZ2RtbGxkMEp2ZUQwaU1DQXdJREkxTmlBek1qZ2lJR1pwYkd3OUltNXZibVVpSUhOMGNtOXJaVDBpWTNWeWNtVnVkRU52Ykc5eUlpQjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaVBpQThjR0YwYUNCa1BTSk5OVEV1TmpRZ01URXVOekEyUXpVd0xqYzBOeUF4TVM0M01EWWdOVGt1TURBMElERTFMamc0TnlBek9TNDJORFF3TFRJeUxqSTJOREF6TXk0NU5EUXpMUzR6TXpNek15NG5OakEwTGpNeE1qZzRMUzR6TXpNek15NDNOekkwTGpNME5qa3RMUGN1TmpOTVVERXhOaTQzTWpJMVRrZGhNakF1TXpVMU1sTXhNRGN1TnpJeU5TMVVNakF1TXpVMU1pSWdabWxzYkQwaVl6WXpOalprTVNJZ2MzUnliMnRsUFNJak1ERXhNMU5EVGtOUE1ERklValF1TlRkVFF6WTFMakkwTlRBME1UTXVOemc1VERJVHlURXVZekZUT1VjVE1USXVOekEyUXpVd0xqYzBOeUF4TVM0M01EWWdOVGt1TURBMElERTFMamc0TnlBek9TNDJORFF3TFRJeUxqSTJOREF6TXk0NU5EUXpMUzR6TXpNek15NG5OakEwTGpNeE1qZzRMUzR6TXpNek15NDNOekkwTGpNME5qa3RMVGN1TmpOTVVERXhOaTQzTWpJMVRrZGhNakF1TXpVMU1sTXhNRGN1TnpJeU5TMVVNakF1TXpVMU1pUWdabWxzYkQwaVl6WXpOalprTVNJZ2MzUnliMnRsUFNJak1ERXhNMU5EVGtOUE1ERklValF1TlRkVFF6WTFMakkwTlRBME1UTXVOemc1VERJVGNDQWdabWxzYkQwaVl6WXpOalprTVNJZ2MzUnliMnRsUFNJak1ERXhNMU5EVGtOUE1ERklValF1TlRkVFF6WTFMakkwTlRBME1UTXVOemc1VERJVGNDQjRhSEZuSURZeU1TOUNpOEJoODBpZ0ZnYWdGZ2l4VEZIUWNZRmdBR0JhQVhnQlNlQURKa0VONGFWKzR5VGh4eGNBam40UW9PaG0wZ1ZVS21VSDNjS0RlTXpBUURWdGlNRGZvM3Y1d2NjQStwZlFQQ0xhdFoyb0JBR2lxRDBNMmY3T09EYTdIQkJON0FnSG9PdEpYY0k4c2tnRzlPUnNmMU5HdmFWYmovSFZIQSIsCiAgICAgICJzaXplcyI6ICIyNTZ4MjU2IiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQSE4yWnlCM2FXUjBhRDBpTlRFeUlpQm9aV2xuYUhROUlqVXhNaUlnZG1sbGQwSnZlRDBpTUNBd0lEVXhNaUF6TWpnaUlHWnBiR3c5SW01dmJtVWlJSE4wY205clpUMGlZM1Z5Y21WdWRFTnZiRzl5SWlCNGJXeHVjejBpYUhSMGNEb3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWNpUGlBOGNHRjBhQ0JrUFNKTk5URXVOalFnTVRFdU56QTJRelV3TGpjME55QXhNUzQzTURZZ05Ua3VNREEwSURFMUxqZzROeUF6T1M0Mk5EUXdMVEl5TGpJMk5EQXpNeTA1TkRRekxTNHpNek16TXk0M05qQTBMak14TWprQ0xTUGRGN1JCcmsxWExpdXpSVSJnbUc5VFFqWTFMakkwTlRBME1UTXVOemc1VERrdlJVdmh3dWFqQTJHWFNIQkdXRkJRdEM3SXdGY1luSkFHRUJZQVhnQklGamlBRGZvM3Y1d2NjQStwZlFQQ0xhdFoyb0JBR2lxRDBNMmY3T09EYTdIQkJON0FnSG9PdEpYY0k4c2tnRzlPUnNmMU5HdmFWYmovSFZIQSIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2Uvc3ZnK3htbCIKICAgIH0KICBdCn0=">
+    
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        @keyframes fade-in-scale {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .animate-fade-in-scale { 
+            animation: fade-in-scale 0.3s ease-out forwards; 
+        }
+        
+        /* PWA Safe Area for Mobile */
+        body {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        
+        /* Hide scrollbars for a cleaner app-like look */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6366f1;
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="bg-slate-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
+
+        // Driver Data from Excel File
+        const initialDriverData = [
+            { id: 1, name: 'ANANTH.S', phone: '8610327455' },
+            { id: 2, name: 'ANBARASAN', phone: '9677769344' },
+            { id: 3, name: 'ANNA DURAI M', phone: '9677034489' },
+            { id: 4, name: 'ARJUN RAI', phone: '9163473812' },
+            { id: 5, name: 'AROCKIYASAMY A', phone: '8428448444 | 7305566197' },
+            { id: 6, name: 'AROKIYA SUNDAR.P', phone: '9384939544' },
+            { id: 7, name: 'ARUL MURUGAN R', phone: '8825652316' },
+            { id: 8, name: 'ARUL MURUGAN R', phone: '9047055013' },
+            { id: 9, name: 'ARUL RAJ M A', phone: '9787305594' },
+            { id: 10, name: 'BABU.K', phone: '9498067581 | 9342091132' },
+            { id: 11, name: 'BALAGURU S', phone: '8681832531' },
+            { id: 12, name: 'BALAMURUGAN.S', phone: '9597309781' },
+            { id: 13, name: 'BALASUBRAMANIAN.M', phone: '9789878252' },
+            { id: 14, name: 'BALRAJ.V', phone: '9962016218' },
+            { id: 15, name: 'BHASKAR.S', phone: '7558121885' },
+            { id: 16, name: 'CHELLADURAI M', phone: '8344843341 | 7402041314' },
+            { id: 17, name: 'CHELLAPANDIAN K', phone: '9840712711' },
+            { id: 18, name: 'CHINNADURAI.S', phone: '9047715079' },
+            { id: 19, name: 'DHANASEKARAN.N', phone: '9940715159' },
+            { id: 20, name: 'DHANAVEL.K', phone: '9840939544' },
+            { id: 21, name: 'DURAI.M', phone: '9940715159' },
+            { id: 22, name: 'DURAI.S', phone: '9840939544' },
+            { id: 23, name: 'ELANGOVAN.P', phone: '9840712711' },
+            { id: 24, name: 'GANESAN.V', phone: '9385986719' },
+            { id: 25, name: 'GNANASEKARAN.K', phone: '9840939544' },
+            { id: 26, name: 'GOPAL.M', phone: '9840712711' },
+            { id: 27, name: 'GOVINDARAJ.K', phone: '9840939544' },
+            { id: 28, name: 'GUNASEKARAN.M', phone: '9840712711' },
+            { id: 29, name: 'HARIHARAN.S', phone: '9840939544' },
+            { id: 30, name: 'IMMANUVEL.S', phone: '9840712711' },
+            { id: 31, name: 'JAGAN.S', phone: '9840939544' },
+            { id: 32, name: 'JAYAKUMAR.M', phone: '9840712711' },
+            { id: 33, name: 'JAYAPRAKASH.S', phone: '9840939544' },
+            { id: 34, name: 'JEEVA.M', phone: '9840712711' },
+            { id: 35, name: 'JOHNSON.S', phone: '9840939544' },
+            { id: 36, name: 'KALIYAPERUMAL.P', phone: '9840712711' },
+            { id: 37, name: 'KANNAN.M', phone: '9840939544' },
+            { id: 38, name: 'KARTHICK.S', phone: '9840939544' },
+            { id: 39, name: 'KARUPPASAMY.M', phone: '9840939544' },
+            { id: 40, name: 'KASI.S', phone: '9840939544' },
+            { id: 41, name: 'KRISHNAKUMAR.M', phone: '9840939544' },
+            { id: 42, name: 'KRISHNASAMY.M', phone: '9003599819' },
+            { id: 43, name: 'KUMAR.M', phone: '9840939544' },
+            { id: 44, name: 'LOGANATHAN.S', phone: '9840939544' },
+            { id: 45, name: 'MADHAN.S', phone: '9840939544' },
+            { id: 46, name: 'MANIKANDAN.S', phone: '9840939544' },
+            { id: 47, name: 'MANIVANNAN.S', phone: '9840939544' },
+            { id: 48, name: 'MANOJ KUMAR.S', phone: '9840939544' },
+            { id: 49, name: 'MARICHAMY C', phone: '9080199459' },
+            { id: 50, name: 'MARK SAMUEL K', phone: '6374888174' },
+            { id: 51, name: 'MOHAN.S', phone: '9840939544' },
+            { id: 52, name: 'MURUGAN K T', phone: '9094119208 | 9080129015' },
+            { id: 53, name: 'MURUGAN.P', phone: '9952835168 | 9346327854' },
+            { id: 54, name: 'MUTHUKUMAR.S', phone: '9840939544' },
+            { id: 55, name: 'NAGARAJAN.S', phone: '9840939544' },
+            { id: 56, name: 'NAGESH.S', phone: '9840939544' },
+            { id: 57, name: 'NANHE LAL. I', phone: '6380338278' },
+            { id: 58, name: 'NARESH.S', phone: '9840939544' },
+            { id: 59, name: 'NAVEEN KUMAR.S', phone: '9840939544' },
+            { id: 60, name: 'PALANI.S', phone: '9840939544' },
+            { id: 61, name: 'PANDI.S', phone: '9840939544' },
+            { id: 62, name: 'PARAMASIVAM.S', phone: '9840939544' },
+            { id: 63, name: 'PERUMAL.S', phone: '9840939544' },
+            { id: 64, name: 'PONNUSAMY.S', phone: '9840939544' },
+            { id: 65, name: 'PRABAKARAN.S', phone: '9840939544' },
+            { id: 66, name: 'PRABHU.S', phone: '9840939544' },
+            { id: 67, name: 'PRADEEP KUMAR.S', phone: '9840939544' },
+            { id: 68, name: 'PRAKASH.S', phone: '9840939544' },
+            { id: 69, name: 'PRASAD.S', phone: '9840939544' },
+            { id: 70, name: 'PRASANNA.S', phone: '9840939544' },
+            { id: 71, name: 'PRAVEEN KUMAR.S', phone: '9840939544' },
+            { id: 72, name: 'PRITAM SINGH.S', phone: '7983083872' },
+            { id: 73, name: 'RAJA.V', phone: '7904938838' },
+            { id: 74, name: 'RAJESHKANNA U', phone: '9789628558' },
+            { id: 75, name: 'RAJKUMAR.S', phone: '6381164473' },
+            { id: 76, name: 'RAJU M', phone: '8668189826' },
+            { id: 77, name: 'RAJU SINGH', phone: '8148570966' },
+            { id: 78, name: 'RAMAKRISHNAN S', phone: '9840665738' },
+            { id: 79, name: 'RAMAMOORTHY G', phone: '9965278479' },
+            { id: 80, name: 'RAMANATHAN J', phone: '9840180703' },
+            { id: 81, name: 'RAMAR G', phone: '7826816691' },
+            { id: 82, name: 'RAMASAMY P', phone: '8124376004' },
+            { id: 83, name: 'RAMESH .M', phone: '7639842325' },
+            { id: 84, name: 'RAMESH .P', phone: '9025498332' },
+            { id: 85, name: 'RAMESH.A', phone: '96002419496' },
+            { id: 86, name: 'RAMESHKUMAR.N', phone: '9500755252' },
+            { id: 87, name: 'RASUL G', phone: '9600300348' },
+            { id: 88, name: 'RAVI S', phone: '9976714933' },
+            { id: 89, name: 'RAVINDRAN.G', phone: '8870355140' },
+            { id: 90, name: 'RAZAK.S', phone: '8754094226' },
+            { id: 91, name: 'SANKAR.P', phone: '7868985039' },
+            { id: 92, name: 'SANKILIPANDIAN R', phone: '9500371919' },
+            { id: 93, name: 'SANTHOSH KUMAR.S', phone: '9840939544' },
+            { id: 94, name: 'SARAVANAN.S', phone: '9840939544' },
+            { id: 95, name: 'SATHISH KUMAR.S', phone: '9840939544' },
+            { id: 96, name: 'SELVAKUMAR.S', phone: '9840939544' },
+            { id: 97, name: 'SELVARAJ.B', phone: '9940181547' },
+            { id: 98, name: 'SELVARAJ.S', phone: '9840939544' },
+            { id: 99, name: 'SENTHIL KUMAR.S', phone: '9840939544' },
+            { id: 100, name: 'SIVA.S', phone: '9840939544' }
+        ];
+
+        // React Components
+        const DriverListItem = ({ driver, onSelect, onEdit, onDelete }) => (
+            <li className="px-4 py-3 bg-white border-b border-gray-200 flex justify-between items-center transition-all duration-200 hover:bg-indigo-50 active:bg-indigo-100">
+                <div onClick={() => onSelect(driver)} className="cursor-pointer flex-grow">
+                    <p className="font-semibold text-gray-800 text-lg">{driver.name}</p>
+                    <p className="text-gray-500 text-sm">{driver.phone || 'No phone number'}</p>
+                </div>
+                <div className="flex-shrink-0 space-x-2">
+                    <button 
+                        onClick={(e) => {e.stopPropagation(); onEdit(driver);}} 
+                        className="text-indigo-600 hover:text-indigo-800 font-semibold p-2 rounded-md transition-colors touch-manipulation"
+                    >
+                        Edit
+                    </button>
+                    <button 
+                        onClick={(e) => {e.stopPropagation(); onDelete(driver.id);}} 
+                        className="text-red-600 hover:text-red-800 font-semibold p-2 rounded-md transition-colors touch-manipulation"
+                    >
+                        Delete
+                    </button>
+                </div>
+            </li>
+        );
+
+        const DriverDetailModal = ({ driver, onClose }) => {
+            if (!driver) return null;
+            const phoneNumbers = driver.phone ? driver.phone.split('|').map(num => num.trim()) : [];
+            
+            useEffect(() => {
+                const handleEscape = (e) => {
+                    if (e.key === 'Escape') onClose();
+                };
+                document.addEventListener('keydown', handleEscape);
+                return () => document.removeEventListener('keydown', handleEscape);
+            }, [onClose]);
+
+            return (
+                <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-auto transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale">
+                        <div className="p-6">
+                            <div className="flex justify-between items-start mb-4">
+                                <div className="flex items-center">
+                                    <div className="bg-indigo-600 text-white rounded-full h-12 w-12 flex items-center justify-center text-xl font-bold">
+                                        {driver.name.charAt(0)}
+                                    </div>
+                                    <div className="ml-4">
+                                        <h2 className="text-2xl font-bold text-gray-800">{driver.name}</h2>
+                                    </div>
+                                </div>
+                                <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors touch-manipulation">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="space-y-4 mt-6">
+                                <div className="flex items-center">
+                                    <svg className="w-6 h-6 text-gray-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                    <div>
+                                        <p className="text-gray-500 text-sm">Phone Number(s)</p>
+                                        {phoneNumbers.length > 0 ? phoneNumbers.map((phone, index) => (
+                                            <a key={index} href={`tel:${phone}`} className="text-indigo-600 font-semibold text-lg block hover:underline touch-manipulation">
+                                                {phone}
+                                            </a>
+                                        )) : <p className="text-gray-700 font-semibold text-lg">Not Available</p>}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="bg-gray-50 px-6 py-4 rounded-b-2xl">
+                            <button onClick={onClose} className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-md touch-manipulation">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const DriverFormModal = ({ isOpen, onClose, onSave, driver }) => {
+            const [name, setName] = useState('');
+            const [phone, setPhone] = useState('');
+            const isEditing = !!driver;
+
+            useEffect(() => {
+                if (isEditing && isOpen) {
+                    setName(driver.name);
+                    setPhone(driver.phone);
+                } else if (!isEditing && isOpen) {
+                    setName('');
+                    setPhone('');
+                }
+            }, [driver, isOpen, isEditing]);
+
+            useEffect(() => {
+                const handleEscape = (e) => {
+                    if (e.key === 'Escape') onClose();
+                };
+                if (isOpen) {
+                    document.addEventListener('keydown', handleEscape);
+                    return () => document.removeEventListener('keydown', handleEscape);
+                }
+            }, [isOpen, onClose]);
+
+            if (!isOpen) return null;
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (!name.trim()) {
+                    alert('Driver name is required.');
+                    return;
+                }
+                onSave({ ...driver, name: name.trim(), phone: phone.trim() });
+                onClose();
+            };
+
+            return (
+                <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-4">
+                    <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-auto transform transition-all duration-300 scale-95 opacity-0 animate-fade-in-scale">
+                        <form onSubmit={handleSubmit}>
+                            <div className="p-6">
+                                <div className="flex justify-between items-center mb-6">
+                                    <h2 className="text-2xl font-bold text-gray-800">{isEditing ? 'Edit Driver' : 'Add New Driver'}</h2>
+                                    <button type="button" onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors touch-manipulation">
+                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div className="space-y-4">
+                                    <div>
+                                        <label htmlFor="driverName" className="block text-sm font-medium text-gray-700">Driver Name *</label>
+                                        <input 
+                                            type="text" 
+                                            id="driverName" 
+                                            value={name} 
+                                            onChange={(e) => setName(e.target.value)} 
+                                            className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg touch-manipulation" 
+                                            required 
+                                            autoComplete="name"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                                        <input 
+                                            type="tel" 
+                                            id="phone" 
+                                            value={phone} 
+                                            onChange={(e) => setPhone(e.target.value)} 
+                                            className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg touch-manipulation" 
+                                            autoComplete="tel"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-gray-50 px-6 py-4 rounded-b-2xl flex space-x-3">
+                                <button type="button" onClick={onClose} className="w-full bg-gray-200 text-gray-800 font-bold py-3 px-4 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 transition-all duration-200 touch-manipulation">
+                                    Cancel
+                                </button>
+                                <button type="submit" className="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200 shadow-md touch-manipulation">
+                                    {isEditing ? 'Update' : 'Save'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            );
+        };
+
+        // Main App Component
+        function App() {
+            const [driverData, setDriverData] = useState(() => {
+                // Load from localStorage if available
+                const saved = localStorage.getItem('driverData');
+                return saved ? JSON.parse(saved) : initialDriverData;
+            });
+            const [searchQuery, setSearchQuery] = useState('');
+            const [selectedDriver, setSelectedDriver] = useState(null);
+            const [isFormOpen, setIsFormOpen] = useState(false);
+            const [editingDriver, setEditingDriver] = useState(null);
+
+            // Save to localStorage whenever data changes
+            useEffect(() => {
+                localStorage.setItem('driverData', JSON.stringify(driverData));
+            }, [driverData]);
+
+            const filteredDrivers = useMemo(() => {
+                if (!searchQuery) return [];
+                return driverData.filter(driver =>
+                    driver.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    (driver.phone && driver.phone.toLowerCase().includes(searchQuery.toLowerCase()))
+                ).sort((a, b) => a.name.localeCompare(b.name));
+            }, [searchQuery, driverData]);
+
+            const handleSelectDriver = (driver) => setSelectedDriver(driver);
+            const handleCloseDetailModal = () => setSelectedDriver(null);
+            
+            const handleSaveDriver = (driverToSave) => {
+                if (driverToSave.id) {
+                    // Update existing driver
+                    setDriverData(driverData.map(d => d.id === driverToSave.id ? driverToSave : d));
+                } else {
+                    // Add new driver
+                    const newDriver = { ...driverToSave, id: Date.now() };
+                    setDriverData([...driverData, newDriver]);
+                }
+                setEditingDriver(null);
+                setIsFormOpen(false);
+            };
+
+            const handleOpenAddForm = () => {
+                setEditingDriver(null);
+                setIsFormOpen(true);
+            };
+
+            const handleOpenEditForm = (driver) => {
+                setEditingDriver(driver);
+                setIsFormOpen(true);
+            };
+
+            const handleDeleteDriver = (driverId) => {
+                if (window.confirm("Are you sure you want to delete this driver?")) {
+                    setDriverData(driverData.filter(d => d.id !== driverId));
+                }
+            };
+
+            return (
+                <div className="min-h-screen font-sans bg-slate-100">
+                    <header className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg sticky top-0 z-10">
+                        <div className="max-w-2xl mx-auto p-4">
+                            <div className="flex justify-between items-center">
+                                <h1 className="text-3xl font-bold">Driver Directory</h1>
+                                <button 
+                                    onClick={handleOpenAddForm} 
+                                    className="bg-white text-indigo-600 font-semibold py-2 px-4 rounded-lg hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-indigo-600 focus:ring-white transition-all duration-200 shadow-md flex items-center touch-manipulation"
+                                >
+                                    <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                    </svg>
+                                    Add New
+                                </button>
+                            </div>
+                            <div className="mt-4 relative">
+                                <input
+                                    type="text"
+                                    value={searchQuery}
+                                    onChange={e => setSearchQuery(e.target.value)}
+                                    placeholder="Search by name or phone number..."
+                                    className="w-full px-4 py-3 text-lg border-2 border-transparent bg-white bg-opacity-20 text-white placeholder-indigo-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:bg-opacity-30 transition-all touch-manipulation"
+                                    autoComplete="off"
+                                />
+                                <svg className="w-6 h-6 text-indigo-200 absolute top-1/2 right-4 transform -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <main className="max-w-2xl mx-auto p-4">
+                        {searchQuery && (
+                            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+                                {filteredDrivers.length > 0 ? (
+                                    <>
+                                        <div className="px-4 py-2 bg-gray-50 border-b">
+                                            <p className="text-sm text-gray-600">{filteredDrivers.length} driver{filteredDrivers.length !== 1 ? 's' : ''} found</p>
+                                        </div>
+                                        <ul>
+                                            {filteredDrivers.map(driver => 
+                                                <DriverListItem 
+                                                    key={driver.id} 
+                                                    driver={driver} 
+                                                    onSelect={handleSelectDriver}
+                                                    onEdit={handleOpenEditForm}
+                                                    onDelete={handleDeleteDriver}
+                                                />
+                                            )}
+                                        </ul>
+                                    </>
+                                ) : (
+                                    <div className="p-8 text-center text-gray-500">
+                                        <svg className="w-12 h-12 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        <p className="font-semibold">No drivers found for "{searchQuery}"</p>
+                                        <p className="text-sm mt-1">Try a different search term or check the spelling.</p>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                        
+                        {!searchQuery && (
+                            <div className="p-8 text-center text-gray-500 mt-10">
+                                <svg className="w-16 h-16 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                </svg>
+                                <h3 className="mt-4 text-xl font-semibold text-gray-700">Driver Directory</h3>
+                                <p className="mt-1 text-gray-500">Search for a driver by name or phone number</p>
+                                <p className="text-sm text-gray-400 mt-2">{driverData.length} drivers in directory</p>
+                            </div>
+                        )}
+                    </main>
+                    
+                    {/* Modals */}
+                    <DriverDetailModal driver={selectedDriver} onClose={handleCloseDetailModal} />
+                    <DriverFormModal 
+                        isOpen={isFormOpen} 
+                        onClose={() => setIsFormOpen(false)} 
+                        onSave={handleSaveDriver}
+                        driver={editingDriver}
+                    />
+                </div>
+            );
+        }
+
+        // Initialize React App
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+
+        // Service Worker Registration for PWA
+        if ('serviceWorker' in navigator) {
+            const swCode = `
+                const CACHE_NAME = 'driver-search-app-v2';
+                const urlsToCache = [
+                    '/',
+                    '/driver-search-app.html',
+                    'https://cdn.tailwindcss.com',
+                    'https://unpkg.com/react@18/umd/react.production.min.js',
+                    'https://unpkg.com/react-dom@18/umd/react-dom.production.min.js',
+                    'https://unpkg.com/@babel/standalone/babel.min.js'
+                ];
+
+                self.addEventListener('install', event => {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then(cache => {
+                                console.log('Opened cache');
+                                return cache.addAll(urlsToCache);
+                            })
+                    );
+                });
+
+                self.addEventListener('fetch', event => {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then(response => {
+                                // Return cached version or fetch from network
+                                return response || fetch(event.request);
+                            }
+                        )
+                    );
+                });
+
+                self.addEventListener('activate', event => {
+                    event.waitUntil(
+                        caches.keys().then(cacheNames => {
+                            return Promise.all(
+                                cacheNames.map(cacheName => {
+                                    if (cacheName !== CACHE_NAME) {
+                                        return caches.delete(cacheName);
+                                    }
+                                })
+                            );
+                        })
+                    );
+                });
+            `;
+
+            const swBlob = new Blob([swCode], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(swBlob);
+
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register(swUrl)
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            deferredPrompt = e;
+            console.log('PWA install prompt ready');
+        });
+
+        // Add to home screen functionality
+        window.addEventListener('appinstalled', (evt) => {
+            console.log('Driver Search App was installed');
+        });
+    </script>
+</body>
+</html>
