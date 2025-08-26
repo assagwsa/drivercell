@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDZzg8hzqTU3Zeu39y8m0dgLNrMbvoZSXM",
+    authDomain: "drivercell-46557.firebaseapp.com",
+    projectId: "drivercell-46557",
+    storageBucket: "drivercell-46557.firebasestorage.app",
+    messagingSenderId: "945067225122",
+    appId: "1:945067225122:web:de28b6b744a289e2b45a7b",
+    measurementId: "G-64JZ6KKD47"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver Search</title>
     
-    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJzaG9ydF9uYW1lIjogIkRyaXZlciBBcHAiLAogICJuYW1lIjogIkRyaXZlciBTZWFyY2ggRGlyZWN0b3J5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQUVBQ0FZQUFBQzdnUEFBQUFBQWdEQVFCQUFBRUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFQSUNSR0RBQUFCR0JBQUFBTk5ORkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZ...eHRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGR'CiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIgogICAgfQogIF0sCiAgInN0YXJ0X3VybCI6ICJpbmRleC5odG1sIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAidGhlbWVfY29sb3IiOiAiIzRGNDZFNSIKfQ==">
+    <link rel="manifest" href="data:application/manifest+json;base64,ewogICJzaG9ydF9uYW1lIjogIkRyaXZlciBBcHAiLAogICJuYW1lIjogIkRyaXZlciBTZWFyY2ggRGlyZWN0b3J5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQUVBQNDAZQUFBQzdnUEFBQUFBQWdEQVFCQUFBRUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFQSUNSR0RBQUFCR0JBQUFBTk5ORkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGRkZGR'CiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJzaXplcyI6ICIxOTJ4MTkyIgogICAgfQogIF0sCiAgInN0YXJ0X3VybCI6ICJpbmRleC5odG1sIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAidGhlbWVfY29sb3IiOiAiIzRGNDZFNSIKfQ==">
     
     <meta name="theme-color" content="#6366F1"/>
     
@@ -13,6 +36,10 @@
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore-compat.js"></script>
+    
     <style>
         @keyframes fade-in-scale {
             from { transform: scale(0.9); opacity: 0; }
@@ -41,130 +68,46 @@
 
     <script type="text/babel">
         const { useState, useMemo, useEffect } = React;
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-        const initialDriverData = [
-            { id: 1, name: 'ANANTH.S', phone: '8610327455' },
-            { id: 2, name: 'ANBARASAN', phone: '9677769344' },
-            { id: 3, name: 'ANNA DURAI M', phone: '9677034489' },
-            { id: 4, name: 'ARJUN RAI', phone: '9163473812' },
-            { id: 5, name: 'AROCKIYASAMY A', phone: '8428448444 | 7305566197' },
-            { id: 6, name: 'AROKIYA SUNDAR.P', phone: '9384939544' },
-            { id: 7, name: 'ARUL MURUGAN R', phone: '8825652316 | 9047055013' },
-            { id: 8, name: 'ARUL RAJ M A', phone: '9787305594' },
-            { id: 9, name: 'BABU.K', phone: '9498067581 | 9342091132' },
-            { id: 10, name: 'BALAGURU S', phone: '8681832531' },
-            { id: 11, name: 'BALAMURUGAN.S', phone: '9597309781' },
-            { id: 12, name: 'BALASUBRAMANIAN.M', phone: '9789878252' },
-            { id: 13, name: 'BALRAJ.V', phone: '9962016218' },
-            { id: 14, name: 'BHASKAR.S', phone: '7558121885' },
-            { id: 15, name: 'CHELLADURAI M', phone: '8344843341 | 7402041314' },
-            { id: 16, name: 'CHELLAPANDIAN K', phone: '9840712884' },
-            { id: 17, name: 'CHINNADURAI.S', phone: '9047715079' },
-            { id: 18, name: 'CHIRANSIVIRAJA D', phone: '9944359892' },
-            { id: 19, name: 'DHAMODHARA KANNAN', phone: '7200656045' },
-            { id: 20, name: 'DHANIYAL', phone: '9962655061' },
-            { id: 21, name: 'ELANGOVAN M', phone: '9597150874' },
-            { id: 22, name: 'GANESAN.V', phone: '9385986719' },
-            { id: 23, name: 'GOPI M', phone: '9884348370 | 9444742113' },
-            { id: 24, name: 'GREESH KUMAR S', phone: '9994799350' },
-            { id: 25, name: 'GUNASEKARAN P', phone: '7358291438' },
-            { id: 26, name: 'JAYAKANDAN P', phone: '9884125710' },
-            { id: 27, name: 'JAYAKUMAR', phone: '9787095197' },
-            { id: 28, name: 'JOHN KENNEDY.S', phone: '9626385074' },
-            { id: 29, name: 'KANAGARAJ P', phone: '9346733782' },
-            { id: 30, name: 'KANI L', phone: '9791505627' },
-            { id: 31, name: 'KANNAN V', phone: '8754510022' },
-            { id: 32, name: 'KANNIYAPPAN.N', phone: '8870312890 | 8072080610' },
-            { id: 33, name: 'KARTHICK RAJ T', phone: '7904307207' },
-            { id: 34, name: 'KARTHIK.A', phone: '9952842888 | 8825709495' },
-            { id: 35, name: 'KARUPIYA', phone: '9791911906' },
-            { id: 36, name: 'KONDAPPASAMY', phone: '8015550555' },
-            { id: 37, name: 'KRISHNA MOORTHY', phone: '6374589021 | 9655907643' },
-            { id: 38, name: 'KRISHNASAMY.M', phone: '9003599819' },
-            { id: 39, name: 'LAWRANCE M', phone: '8973578035' },
-            { id: 40, name: 'LOGANATHAN R', phone: '9543234070' },
-            { id: 41, name: 'MADASAMY.S', phone: '7639929124' },
-            { id: 42, name: 'MADASAMY V', phone: '9787729807' },
-            { id: 43, name: 'MANIKANDAN.D', phone: '9629526757' },
-            { id: 44, name: 'MANIKANDAN.S.P', phone: '9965717886' },
-            { id: 45, name: 'MANOHARAN.', phone: '9790588878' },
-            { id: 46, name: 'MARIAPPAN N', phone: '9751375940' },
-            { id: 47, name: 'MARICHAMY C', phone: '9080199459' },
-            { id: 48, name: 'MARIMUTHU', phone: '9003526048' },
-            { id: 49, name: 'LAWRANCE M', phone: '8056265089' },
-            { id: 50, name: 'MARK SAMUEL K', phone: '6374888174' },
-            { id: 51, name: 'MOHAMED BILAL A', phone: '7539965273' },
-            { id: 52, name: 'MOHAN K', phone: '9884881305' },
-            { id: 53, name: 'MURUGAIAN A', phone: '9789023538' },
-            { id: 54, name: 'MURUGAN ( KARAIKUDI )', phone: '9944214419' },
-            { id: 55, name: 'MURUGAN K', phone: '9790169644' },
-            { id: 56, name: 'MURUGAN K T', phone: '9094119208 | 9080129015' },
-            { id: 57, name: 'MURUGAN.P', phone: '9952835168 | 9346327854' },
-            { id: 58, name: 'MUTHU KUMAR', phone: '6379668187' },
-            { id: 59, name: 'MUTHU VIJAYAN.M', phone: '7339304398' },
-            { id: 60, name: 'MUTHURAJ S', phone: '8870080335' },
-            { id: 61, name: 'NANHE LAL. I', phone: '6380338278' },
-            { id: 62, name: 'NANNHELAL.K', phone: '8754587387' },
-            { id: 63, name: 'PALANIVEL T', phone: '9003767318' },
-            { id: 64, name: 'PALRAJ N', phone: '8056133018' },
-            { id: 65, name: 'PARAMASIVAN S', phone: '9543238075' },
-            { id: 66, name: 'PATTUGANESAN.T', phone: '9443454805' },
-            { id: 67, name: 'PATTURAJAPANDIAN P', phone: '9363578445' },
-            { id: 68, name: 'POOVANDRAN.', phone: '9047916030' },
-            { id: 69, name: 'PRABHU.ST', phone: '7708272557 | 7708929375' },
-            { id: 70, name: 'PRAKASH B', phone: '7708252626' },
-            { id: 71, name: 'PRITAM SINGH.S', phone: '7983083872' },
-            { id: 72, name: 'RAJA.V', phone: '7904938838' },
-            { id: 73, name: 'RAJESHKANNA U', phone: '9789628558' },
-            { id: 74, name: 'RAJKUMAR.S', phone: '6381164473' },
-            { id: 75, name: 'RAJU M', phone: '8668189826' },
-            { id: 76, name: 'RAJU SINGH', phone: '8148570966' },
-            { id: 77, name: 'RAMAKRISHNAN S', phone: '9840665738' },
-            { id: 78, name: 'RAMAMOORTHY G', phone: '9965278479' },
-            { id: 79, name: 'RAMANATHAN J', phone: '9840180703' },
-            { id: 80, name: 'RAMAR G', phone: '7826816691' },
-            { id: 81, name: 'RAMASAMY P', phone: '8124376004' },
-            { id: 82, name: 'RAMESH .M', phone: '7639842325' },
-            { id: 83, name: 'RAMESH .P', phone: '9025498332' },
-            { id: 84, name: 'RAMESH.A', phone: '96002419496' },
-            { id: 85, name: 'RAMESHKUMAR.N', phone: '9500755252' },
-            { id: 86, name: 'RASUL G', phone: '9600300348' },
-            { id: 87, name: 'RAVI S', phone: '9976714933' },
-            { id: 88, name: 'RAVINDRAN.G', phone: '8870355140' },
-            { id: 89, name: 'RAZAK.S', phone: '8754094226' },
-            { id: 90, name: 'SANKAR.P', phone: '7868985039' },
-            { id: 91, name: 'SANKILIPANDIAN R', phone: '9500371919' },
-            { id: 92, name: 'SANTHANARAJ.M', phone: '9789135633' },
-            { id: 93, name: 'SANTHOSH KUMAR M C', phone: '9446999761 | 9840077871' },
-            { id: 94, name: 'SARAVANAKUMAR G', phone: '6381101371' },
-            { id: 95, name: 'SARAVANAN', phone: '9994014472' },
-            { id: 96, name: 'SEENAVARAYAMOORTHI S', phone: '8754748187 | 9788748187' },
-            { id: 97, name: 'SELVAKUMAR V', phone: '9500312831 | 9384717331' },
-            { id: 98, name: 'SELVAM S', phone: '9942966635' },
-            { id: 99, name: 'SELVARAJ A', phone: '9442879056' },
-            { id: 100, name: 'SELVARAJ.B', phone: '9940181547' },
-            { id: 101, name: 'SENTHIL S', phone: '6381594895' },
-            { id: 102, name: 'SHANMUGASUNDARAM A', phone: '8525932481' },
-            { id: 103, name: 'SIVAKUMAR S', phone: '8825685156 | 9489539457' },
-            { id: 104, name: 'SIVANANDHAM S', phone: '9944976589' },
-            { id: 105, name: 'SONAI MUTHU G', phone: '9994703363' },
-            { id: 106, name: 'SORNAM N', phone: '9677324709' },
-            { id: 107, name: 'STALIN S', phone: '6369337327 | 9043914023' },
-            { id: 108, name: 'SUBBIAH.U', phone: '9629233811' },
-            { id: 109, name: 'SUBRAMANI C', phone: '9486448056' },
-            { id: 110, name: 'SUDHAKAR.S', phone: '8870171560' },
-            { id: 111, name: 'SURESH .E', phone: '9025301772 | 8939663080' },
-            { id: 112, name: 'TAMIZHARASAN M', phone: '8148594656' },
-            { id: 113, name: 'THILAGARAJ J', phone: '9940593071' },
-            { id: 114, name: 'THIRUNAVUKKARASU S', phone: '7358188477' },
-            { id: 115, name: 'VADIVEL S', phone: '9003941572' },
-            { id: 116, name: 'VASUDEVAN.S', phone: '8248156680' },
-            { id: 117, name: 'VEERA PERUMAL.S', phone: '8220710698' },
-            { id: 118, name: 'VETRIVEL S', phone: '9952378432' },
-            { id: 119, name: 'VICTOR.A', phone: '9094811313' },
-            { id: 120, name: 'VIGNESH.P', phone: '7200840747 | 9566240747' },
-            { id: 121, name: 'VINOTH KUMAR M', phone: '8072506483 | 9626116368' }
-        ];
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDZzg8hzqTU3Zeu39y8m0dgLNrMbvoZSXM",
+    authDomain: "drivercell-46557.firebaseapp.com",
+    projectId: "drivercell-46557",
+    storageBucket: "drivercell-46557.firebasestorage.app",
+    messagingSenderId: "945067225122",
+    appId: "1:945067225122:web:de28b6b744a289e2b45a7b",
+    measurementId: "G-64JZ6KKD47"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+        // --- PASTE YOUR FIREBASE CONFIG AND INITIALIZE FIREBASE ---
+        const firebaseConfig = {
+          apiKey: "YOUR_API_KEY", // Replace with your actual config values
+          authDomain: "YOUR_AUTH_DOMAIN",
+          projectId: "YOUR_PROJECT_ID",
+          storageBucket: "YOUR_STORAGE_BUCKET",
+          messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+          appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore(); // Get a reference to the Firestore database
+        const driversCollection = db.collection('drivers'); // Reference to the 'drivers' collection
+        // --- END OF FIREBASE SETUP ---
 
         const Toast = ({ message }) => {
             const [visible, setVisible] = useState(false);
@@ -311,23 +254,24 @@
         };
 
         function App() {
-            const [driverData, setDriverData] = useState(() => {
-                const savedDrivers = localStorage.getItem('driverData');
-                if (savedDrivers && savedDrivers !== '[]') {
-                    return JSON.parse(savedDrivers);
-                }
-                return initialDriverData;
-            });
-
-            useEffect(() => {
-                localStorage.setItem('driverData', JSON.stringify(driverData));
-            }, [driverData]);
-
+            const [driverData, setDriverData] = useState([]);
             const [searchQuery, setSearchQuery] = useState('');
             const [selectedDriver, setSelectedDriver] = useState(null);
             const [isFormOpen, setIsFormOpen] = useState(false);
             const [editingDriver, setEditingDriver] = useState(null);
             const [toastMessage, setToastMessage] = useState('');
+
+            // --- FETCH AND LISTEN FOR REAL-TIME DATA FROM FIREBASE ---
+            useEffect(() => {
+                const unsubscribe = driversCollection.onSnapshot(snapshot => {
+                    const drivers = snapshot.docs.map(doc => ({
+                        id: doc.id,
+                        ...doc.data()
+                    }));
+                    setDriverData(drivers);
+                });
+                return () => unsubscribe();
+            }, []);
 
             const filteredDrivers = useMemo(() => {
                 if (!searchQuery) return [];
@@ -339,14 +283,18 @@
             const handleSelectDriver = (driver) => setSelectedDriver(driver);
             const handleCloseDetailModal = () => setSelectedDriver(null);
             
+            // --- MODIFIED TO USE FIREBASE ---
             const handleSaveDriver = (driverToSave) => {
                 if (driverToSave.id) {
-                    setDriverData(driverData.map(d => d.id === driverToSave.id ? driverToSave : d));
-                    setToastMessage('Successfully saved!');
+                    driversCollection.doc(driverToSave.id).update({
+                        name: driverToSave.name,
+                        phone: driverToSave.phone
+                    }).then(() => setToastMessage('Successfully saved!'));
                 } else {
-                    const newId = driverData.length > 0 ? Math.max(...driverData.map(d => d.id)) + 1 : 1;
-                    setDriverData([...driverData, { ...driverToSave, id: newId }]);
-                    setToastMessage('Successfully added!');
+                    driversCollection.add({
+                        name: driverToSave.name,
+                        phone: driverToSave.phone
+                    }).then(() => setToastMessage('Successfully added!'));
                 }
                 setEditingDriver(null);
                 setIsFormOpen(false);
@@ -362,10 +310,11 @@
                 setIsFormOpen(true);
             };
 
+            // --- MODIFIED TO USE FIREBASE ---
             const handleDeleteDriver = (driverId) => {
                 if (window.confirm("Are you sure you want to delete this driver?")) {
-                    setDriverData(driverData.filter(d => d.id !== driverId));
-                    setToastMessage('Successfully deleted!');
+                    driversCollection.doc(driverId).delete()
+                      .then(() => setToastMessage('Successfully deleted!'));
                 }
             };
 
@@ -439,34 +388,10 @@
         const root = ReactDOM.createRoot(container);
         root.render(<App />);
 
-        if ('serviceWorker' in navigator) {
-            const swCode = `
-                const CACHE_NAME = 'driver-app-cache-v1';
-                const urlsToCache = ['/'];
-                self.addEventListener('install', event => {
-                  event.waitUntil(
-                    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-                  );
-                });
-                self.addEventListener('fetch', event => {
-                  event.respondWith(
-                    caches.match(event.request).then(response => {
-                      return response || fetch(event.request);
-                    })
-                  );
-                });
-            `;
-            const swBlob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(swBlob);
-
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register(swUrl).then(registration => {
-                    console.log('ServiceWorker registration successful.');
-                }).catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
+        // The Service Worker is not recommended for a Firebase real-time app
+        // as it can interfere with real-time updates by serving old data.
+        // It has been removed to ensure data is always fresh from the database.
+        
     </script>
 </body>
 </html>
